@@ -1,6 +1,8 @@
 'use strict';
 
-var origSymbol = global.Symbol;
+var origSymbol = typeof global !== 'undefined' ? global.Symbol
+	: typeof window !== 'undefined' ? window.Symbol : undefined;
+
 var hasSymbolSham = require('./shams');
 
 module.exports = function hasNativeSymbols() {
