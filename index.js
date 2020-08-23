@@ -1,6 +1,6 @@
 'use strict';
 
-var origSymbol = global.Symbol;
+var origSymbol = (global || self).Symbol;
 var hasSymbolSham = require('./shams');
 
 module.exports = function hasNativeSymbols() {
