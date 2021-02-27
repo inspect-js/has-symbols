@@ -33,8 +33,6 @@ Simply clone the repo, `npm install`, and run `npm test`
 [6]: https://david-dm.org/inspect-js/has-symbols
 [7]: https://david-dm.org/inspect-js/has-symbols/dev-status.svg
 [8]: https://david-dm.org/inspect-js/has-symbols#info=devDependencies
-[9]: https://ci.testling.com/inspect-js/has-symbols.png
-[10]: https://ci.testling.com/inspect-js/has-symbols
 [11]: https://nodei.co/npm/has-symbols.png?downloads=true&stars=true
 [license-image]: https://img.shields.io/npm/l/has-symbols.svg
 [license-url]: LICENSE
