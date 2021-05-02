@@ -1,4 +1,4 @@
-name: 'Tests: node.js'
+name: 'Tests: node.js (v10 - v11)'
 
 on: [pull_request, push]
 
@@ -13,7 +13,7 @@ jobs:
         id: set-matrix
         with:
           versionsAsRoot: true
-          preset: '10 - 11'
+          preset: '^10 || ^11'
 
   latest:
     needs: [matrix]
@@ -31,11 +31,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ljharb/actions/node/run@main
-        name: 'npm install && npm run tests-only'
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install ${{ matrix.node-version }} && npm install'
         with:
           node-version: ${{ matrix.node-version }}
-          command: ${{ matrix.command }}
+      - run: npm run ${{ matrix.command }}
+      - uses: codecov/codecov-action@v1
+
   minors:
     needs: [matrix, latest]
     name: 'non-latest minors'
@@ -54,10 +56,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ljharb/actions/node/run@main
+      - uses: ljharb/actions/node/install@main
+        name: 'nvm install ${{ matrix.node-version }} && npm install'
         with:
           node-version: ${{ matrix.node-version }}
-          command: ${{ matrix.command }}
+      - run: npm run ${{ matrix.command }}
+      - uses: codecov/codecov-action@v1
 
   node:
     name: 'node v10 - v11'

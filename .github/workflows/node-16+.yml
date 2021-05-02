@@ -1,4 +1,4 @@
-name: 'Tests: node.js (0.x)'
+name: 'Tests: node.js (v16+)'
 
 on: [pull_request, push]
 
@@ -6,27 +6,25 @@ jobs:
   matrix:
     runs-on: ubuntu-latest
     outputs:
-      stable: ${{ steps.set-matrix.outputs.requireds }}
-      unstable: ${{ steps.set-matrix.outputs.optionals }}
+      latest: ${{ steps.set-matrix.outputs.requireds }}
+      minors: ${{ steps.set-matrix.outputs.optionals }}
     steps:
       - uses: ljharb/actions/node/matrix@main
         id: set-matrix
         with:
           versionsAsRoot: true
-          preset: '0.x'
+          preset: '>=16'
 
-  stable:
+  latest:
     needs: [matrix]
-    name: 'stable minors'
+    name: 'latest minors'
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: false
       matrix:
-        node-version: ${{ fromJson(needs.matrix.outputs.stable) }}
+        node-version: ${{ fromJson(needs.matrix.outputs.latest) }}
         command:
           - test:stock
-          - test:staging
           - test:shams:corejs
           - test:shams:getownpropertysymbols
 
@@ -36,25 +34,21 @@ jobs:
         name: 'nvm install ${{ matrix.node-version }} && npm install'
         with:
           node-version: ${{ matrix.node-version }}
-          cache-node-modules-key: node_modules-${{ github.workflow }}-${{ github.action }}-${{ github.run_id }}
-          skip-ls-check: true
       - run: npm run ${{ matrix.command }}
       - uses: codecov/codecov-action@v1
 
-  unstable:
-    needs: [matrix, stable]
-    name: 'unstable minors'
+  minors:
+    needs: [matrix, latest]
+    name: 'non-latest minors'
     continue-on-error: true
     if: ${{ !github.head_ref || !startsWith(github.head_ref, 'renovate') }}
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: false
       matrix:
-        node-version: ${{ fromJson(needs.matrix.outputs.unstable) }}
+        node-version: ${{ fromJson(needs.matrix.outputs.latest) }} # TODO: change to "minors" once v16.1 comes out
         command:
           - test:stock
-          - test:staging
           - test:shams:corejs
           - test:shams:getownpropertysymbols
 
@@ -64,14 +58,12 @@ jobs:
         name: 'nvm install ${{ matrix.node-version }} && npm install'
         with:
           node-version: ${{ matrix.node-version }}
-          cache-node-modules-key: node_modules-${{ github.workflow }}-${{ github.action }}-${{ github.run_id }}
-          skip-ls-check: true
       - run: npm run ${{ matrix.command }}
       - uses: codecov/codecov-action@v1
 
   node:
-    name: 'node 0.x'
-    needs: [stable, unstable]
+    name: 'node v16+'
+    needs: [latest, minors]
     runs-on: ubuntu-latest
     steps:
       - run: 'echo tests completed'
