@@ -46,7 +46,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ${{ fromJson(needs.matrix.outputs.latest) }} # TODO: change to "minors" once v16.1 comes out
+        node-version: ${{ fromJson(needs.matrix.outputs.minors) }}
         command:
           - test:stock
           - test:shams:corejs
