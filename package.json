@@ -50,15 +50,15 @@
 		"ES6"
 	],
 	"devDependencies": {
-		"@ljharb/eslint-config": "^17.6.0",
+		"@ljharb/eslint-config": "^20.1.0",
 		"aud": "^1.1.5",
 		"auto-changelog": "^2.3.0",
 		"core-js": "^2.6.12",
-		"eslint": "^7.32.0",
+		"eslint": "^8.4.1",
 		"get-own-property-symbols": "^0.9.5",
 		"nyc": "^10.3.2",
-		"safe-publish-latest": "^1.1.4",
-		"tape": "^5.3.0"
+		"safe-publish-latest": "^2.0.0",
+		"tape": "^5.3.2"
 	},
 	"testling": {
 		"files": "test/index.js",
