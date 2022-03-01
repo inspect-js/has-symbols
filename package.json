@@ -1,23 +1,7 @@
 {
 	"name": "has-symbols",
 	"version": "1.0.2",
-	"author": {
-		"name": "Jordan Harband",
-		"email": "ljharb@gmail.com",
-		"url": "http://ljharb.codes"
-	},
-	"funding": {
-		"url": "https://github.com/sponsors/ljharb"
-	},
-	"contributors": [
-		{
-			"name": "Jordan Harband",
-			"email": "ljharb@gmail.com",
-			"url": "http://ljharb.codes"
-		}
-	],
 	"description": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
-	"license": "MIT",
 	"main": "index.js",
 	"scripts": {
 		"prepublishOnly": "safe-publish-latest",
@@ -49,6 +33,26 @@
 		"core-js",
 		"ES6"
 	],
+	"author": {
+		"name": "Jordan Harband",
+		"email": "ljharb@gmail.com",
+		"url": "http://ljharb.codes"
+	},
+	"contributors": [
+		{
+			"name": "Jordan Harband",
+			"email": "ljharb@gmail.com",
+			"url": "http://ljharb.codes"
+		}
+	],
+	"funding": {
+		"url": "https://github.com/sponsors/ljharb"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ljharb/has-symbols/issues"
+	},
+	"homepage": "https://github.com/ljharb/has-symbols#readme",
 	"devDependencies": {
 		"@ljharb/eslint-config": "^20.1.0",
 		"aud": "^1.1.5",
