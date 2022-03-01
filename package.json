@@ -1,6 +1,6 @@
 {
 	"name": "has-symbols",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
 	"main": "index.js",
 	"scripts": {
