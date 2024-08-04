@@ -30,13 +30,13 @@ jobs:
           - test:shams:getownpropertysymbols
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: ljharb/actions/node/install@main
         name: 'nvm install ${{ matrix.node-version }} && npm install'
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm run ${{ matrix.command }}
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3.1.5
 
   minors:
     needs: [matrix, latest]
@@ -55,13 +55,13 @@ jobs:
           - test:shams:getownpropertysymbols
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: ljharb/actions/node/install@main
         name: 'nvm install ${{ matrix.node-version }} && npm install'
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm run ${{ matrix.command }}
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3.1.5
 
   node:
     name: 'node v14 - v15'

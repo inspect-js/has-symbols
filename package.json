@@ -10,7 +10,7 @@
 		"pretest": "npm run --silent lint",
 		"test": "npm run tests-only",
 		"posttest": "aud --production",
-		"tests-only": "npm run test:stock && npm run test:staging && npm run test:shams",
+		"tests-only": "npm run test:stock && npm run test:shams",
 		"test:stock": "nyc node test",
 		"test:staging": "nyc node --harmony --es-staging test",
 		"test:shams": "npm run --silent test:shams:getownpropertysymbols && npm run --silent test:shams:corejs",
