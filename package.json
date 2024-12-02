@@ -17,6 +17,7 @@
 		"test:shams:corejs": "nyc node test/shams/core-js.js",
 		"test:shams:getownpropertysymbols": "nyc node test/shams/get-own-property-symbols.js",
 		"lint": "eslint --ext=js,mjs .",
+		"postlint": "tsc -p . && attw -P",
 		"version": "auto-changelog && git add CHANGELOG.md",
 		"postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\""
 	},
@@ -55,7 +56,11 @@
 	},
 	"homepage": "https://github.com/ljharb/has-symbols#readme",
 	"devDependencies": {
+		"@arethetypeswrong/cli": "^0.17.0",
 		"@ljharb/eslint-config": "^21.1.1",
+		"@ljharb/tsconfig": "^0.2.0",
+		"@types/core-js": "^2.5.8",
+		"@types/tape": "^5.6.5",
 		"auto-changelog": "^2.5.0",
 		"core-js": "^2.6.12",
 		"encoding": "^0.1.13",
@@ -65,7 +70,8 @@
 		"npmignore": "^0.3.1",
 		"nyc": "^10.3.2",
 		"safe-publish-latest": "^2.0.0",
-		"tape": "^5.9.0"
+		"tape": "^5.9.0",
+		"typescript": "next"
 	},
 	"testling": {
 		"files": "test/index.js",
@@ -98,7 +104,8 @@
 	},
 	"publishConfig": {
 		"ignore": [
-			".github/workflows"
+			".github/workflows",
+			"types"
 		]
 	}
 }
