@@ -74,4 +74,4 @@ jobs:
     needs: [stable, unstable]
     runs-on: ubuntu-latest
     steps:
-      - run: 'echo tests completed'
+      - run: true

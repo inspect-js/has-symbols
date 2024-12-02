@@ -1,4 +1,4 @@
-name: 'Tests: node.js (v7 - v9)'
+name: 'Tests: node.js (v22+)'
 
 on: [pull_request, push]
 
@@ -13,7 +13,7 @@ jobs:
         id: set-matrix
         with:
           versionsAsRoot: true
-          preset: '^7 || ^8 || ^9'
+          preset: '>=22'
 
   latest:
     needs: [matrix]
@@ -26,7 +26,6 @@ jobs:
         node-version: ${{ fromJson(needs.matrix.outputs.latest) }}
         command:
           - test:stock
-          - test:staging
           - test:shams:corejs
           - test:shams:getownpropertysymbols
 
@@ -52,7 +51,6 @@ jobs:
         node-version: ${{ fromJson(needs.matrix.outputs.minors) }}
         command:
           - test:stock
-          - test:staging
           - test:shams:corejs
           - test:shams:getownpropertysymbols
 
@@ -66,7 +64,7 @@ jobs:
       - uses: codecov/codecov-action@v3.1.5
 
   node:
-    name: 'node v7 - v9'
+    name: 'node v22+'
     needs: [latest, minors]
     runs-on: ubuntu-latest
     steps:

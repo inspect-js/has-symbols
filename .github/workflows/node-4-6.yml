@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         node-version: ${{ fromJson(needs.matrix.outputs.latest) }}
         command:
@@ -46,6 +47,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         node-version: ${{ fromJson(needs.matrix.outputs.minors) }}
         command:
@@ -68,4 +70,4 @@ jobs:
     needs: [latest, minors]
     runs-on: ubuntu-latest
     steps:
-      - run: 'echo tests completed'
+      - run: true
