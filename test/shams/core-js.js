@@ -17,7 +17,9 @@ var hasSymbols = require('../../shams');
 test('polyfilled Symbols', function (t) {
 	/* eslint-disable global-require */
 	t.equal(hasSymbols(), false, 'hasSymbols is false before polyfilling');
+	// @ts-expect-error insufficient DT types
 	require('core-js/fn/symbol');
+	// @ts-expect-error insufficient DT types
 	require('core-js/fn/symbol/to-string-tag');
 
 	require('../tests')(t);
